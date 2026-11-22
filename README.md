@@ -28,4 +28,16 @@ python txt2cbr.py <输入.txt> <输出.cbr> [模板.cbr]
 
 ## 模板说明
 
-脚本需要一个 CBR 空棋谱作为模板（用于棋盘签名与文件头）。默认路径指向象棋桥（CCBridge）安装目录下的 `1102.cbr`；如果你的模板在别处，用第 3 个参数或 `CBR_TEMPLATE` 环境变量指定即可。
+脚本需要一个 CBR 空棋谱作为模板（用于棋盘签名与文件头）。默认路径指向象棋桥（CCBridge）安装目录下的 `1102.cbr`；如果你的模板在别处，用第 3 个参数或 `CBR_TEMPLATE` 环境变量指定即可。仓库 `templates/` 目录下也附带了一份 `1102.cbr` 模板，可直接拿来用。
+
+## 示例
+
+`examples/` 目录下有三对 txt/cbr 样例（各 27 着），可直接用来验证转换效果：
+
+```bash
+python txt2cbr.py examples/261102_32.txt output.cbr templates/1102.cbr
+```
+
+- `261102_32.txt` / `261102_32.cbr`
+- `261110_2.txt` / `261110_2.cbr`
+- `261112_3.txt` / `261112_3.cbr`
