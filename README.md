@@ -12,6 +12,10 @@ A small tool that converts Chinese chess text notation (`.txt`) into CCBridge CB
 脚本穷举每一步的合法着法，用标准记谱法反写字符串与原文精确比对，唯一命中才采用，因此不会把歧义着法写错。
 The script enumerates every legal move at each step, writes it back using standard notation, and compares it exactly with the source text. A move is accepted only when there is a unique match, so ambiguous moves are never written incorrectly.
 
+## 环境要求 / Requirements
+
+运行本工具前需要先安装 Python 3；脚本只依赖 Python 标准库，无需额外安装包。可用 `python --version` 检查是否已安装，若未安装请到 https://www.python.org/downloads/ 下载安装（安装时记得勾选 "Add Python to PATH"）。
+
 ## 用法 / Usage
 
 ```bash
@@ -71,6 +75,10 @@ A small tool that converts Chinese chess text notation (`.txt`) into CCBridge CB
 ### How it works
 
 The script enumerates every legal move at each step, writes it back using standard notation, and compares it exactly with the source text. A move is accepted only when there is a unique match, so ambiguous moves are never written incorrectly.
+
+### Requirements
+
+Python 3 must be installed to use this tool. The script only depends on the Python standard library, so no extra packages are needed. Check with `python --version`; if Python is not installed, download it from https://www.python.org/downloads/ (remember to check "Add Python to PATH" during installation).
 
 ### Usage
 
