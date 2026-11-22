@@ -1,19 +1,29 @@
 # txt2cbr
 
 把中国象棋文字棋谱（`.txt`）转换成象棋桥 CBR 格式棋谱（`.cbr`）的小工具。
+A small tool that converts Chinese chess text notation (`.txt`) into CCBridge CBR format game records (`.cbr`).
 
-## 原理
+> 中文 | [English](#english)
+
+---
+
+## 原理 / How it works
 
 脚本穷举每一步的合法着法，用标准记谱法反写字符串与原文精确比对，唯一命中才采用，因此不会把歧义着法写错。
+The script enumerates every legal move at each step, writes it back using standard notation, and compares it exactly with the source text. A move is accepted only when there is a unique match, so ambiguous moves are never written incorrectly.
 
-## 用法
+## 用法 / Usage
 
 ```bash
 python txt2cbr.py <输入.txt> <输出.cbr> [模板.cbr]
+python txt2cbr.py <input.txt> <output.cbr> [template.cbr]
 ```
 
 - 模板可通过第 3 个参数指定，也可设置环境变量 `CBR_TEMPLATE`；都不提供时使用内置默认路径（Windows 上象棋桥的安装位置）。
 - 输入 txt 每行一到两着，逗号分隔，例如：
+
+- The template can be specified as the 3rd argument or via the `CBR_TEMPLATE` environment variable. If neither is provided, a built-in default path is used (the CCBridge installation location on Windows).
+- Each line of the input txt contains one or two moves separated by commas, for example:
 
 ```
 炮二平五,马8进7
@@ -21,23 +31,81 @@ python txt2cbr.py <输入.txt> <输出.cbr> [模板.cbr]
 俥一进一,马2进3
 ```
 
-## 文件
+## 文件 / Files
 
-- `txt2cbr.py` — 主程序
-- `cbr_model.py` — 棋盘与规则模型，依赖文件，需与主程序放在同一目录
-- `CCBridge3_非棋谱文件.zip` — 象棋桥（CCBridge 3）软件本体打包，不含任何棋谱，便于在新环境安装或迁移
+- `txt2cbr.py` — 主程序 / main program
+- `cbr_model.py` — 棋盘与规则模型，依赖文件，需与主程序放在同一目录 / board and rules model, a dependency that must stay in the same directory as the main program
+- `CCBridge3_非棋谱文件.zip` — 象棋桥（CCBridge 3）软件本体打包，不含任何棋谱，便于在新环境安装或迁移 / the CCBridge 3 software package, containing no game records, for easy installation or migration to a new environment
 
-## 象棋桥软件 ZIP
+## 象棋桥软件 ZIP / CCBridge software ZIP
 
 象棋桥软件的打包文件 `CCBridge3_非棋谱文件.zip` 已上传至本仓库根目录。该压缩包只包含软件运行所需的文件（主程序、DLL、配置、皮肤、音效、插件等），不含棋谱数据，解压后即为完整的 `CCBridge3` 目录结构，方便在缺少象棋桥的环境中使用本工具或迁移软件本体。
+The CCBridge software package `CCBridge3_非棋谱文件.zip` has been uploaded to the root of this repository. It contains only the files needed to run the software (main program, DLLs, configuration, skins, sounds, plugins, etc.) and no game-record data. Extracting it yields the complete `CCBridge3` directory structure, making it convenient to use this tool in an environment without CCBridge or to migrate the software itself.
 
-## 模板说明
+[下载 / Download](https://raw.githubusercontent.com/huangjiangfeng/txt2cbr/main/CCBridge3_%E9%9D%9E%E6%A3%8B%E8%B0%B1%E6%96%87%E4%BB%B6.zip)
+
+## 模板说明 / About the template
 
 脚本需要一个 CBR 空棋谱作为模板（用于棋盘签名与文件头）。默认路径指向象棋桥（CCBridge）安装目录下的 `1102.cbr`；如果你的模板在别处，用第 3 个参数或 `CBR_TEMPLATE` 环境变量指定即可。仓库 `templates/` 目录下也附带了一份 `1102.cbr` 模板，可直接拿来用。
+The script needs an empty CBR game record as a template (for the board signature and file header). The default path points to `1102.cbr` in the CCBridge installation directory. If your template is elsewhere, specify it with the 3rd argument or the `CBR_TEMPLATE` environment variable. A copy of the `1102.cbr` template is also included in the repository's `templates/` directory and can be used directly.
 
-## 示例
+## 示例 / Example
 
-`examples/` 目录下有一对 txt/cbr 样例（27 着），可直接用来验证转换效果：
+`examples/` 目录下有一对 txt/cbr 样例（27 着），可直接用来验证转换效果。
+The `examples/` directory contains a pair of txt/cbr samples (27 moves) that can be used directly to verify the conversion.
+
+```bash
+python txt2cbr.py examples/261110_2.txt output.cbr templates/1102.cbr
+```
+
+- `261110_2.txt` / `261110_2.cbr`
+
+---
+
+<a id="english"></a>
+
+## English
+
+A small tool that converts Chinese chess text notation (`.txt`) into CCBridge CBR format game records (`.cbr`).
+
+### How it works
+
+The script enumerates every legal move at each step, writes it back using standard notation, and compares it exactly with the source text. A move is accepted only when there is a unique match, so ambiguous moves are never written incorrectly.
+
+### Usage
+
+```bash
+python txt2cbr.py <input.txt> <output.cbr> [template.cbr]
+```
+
+- The template can be specified as the 3rd argument or via the `CBR_TEMPLATE` environment variable. If neither is provided, a built-in default path is used (the CCBridge installation location on Windows).
+- Each line of the input txt contains one or two moves separated by commas, for example:
+
+```
+炮二平五,马8进7
+馬二进三,車9平8
+俥一进一,马2进3
+```
+
+### Files
+
+- `txt2cbr.py` — main program
+- `cbr_model.py` — board and rules model, a dependency that must stay in the same directory as the main program
+- `CCBridge3_非棋谱文件.zip` — the CCBridge 3 software package, containing no game records, for easy installation or migration to a new environment
+
+### CCBridge software ZIP
+
+The CCBridge software package `CCBridge3_非棋谱文件.zip` has been uploaded to the root of this repository. It contains only the files needed to run the software (main program, DLLs, configuration, skins, sounds, plugins, etc.) and no game-record data. Extracting it yields the complete `CCBridge3` directory structure, making it convenient to use this tool in an environment without CCBridge or to migrate the software itself.
+
+[Download](https://raw.githubusercontent.com/huangjiangfeng/txt2cbr/main/CCBridge3_%E9%9D%9E%E6%A3%8B%E8%B0%B1%E6%96%87%E4%BB%B6.zip)
+
+### About the template
+
+The script needs an empty CBR game record as a template (for the board signature and file header). The default path points to `1102.cbr` in the CCBridge installation directory. If your template is elsewhere, specify it with the 3rd argument or the `CBR_TEMPLATE` environment variable. A copy of the `1102.cbr` template is also included in the repository's `templates/` directory and can be used directly.
+
+### Example
+
+The `examples/` directory contains a pair of txt/cbr samples (27 moves) that can be used directly to verify the conversion.
 
 ```bash
 python txt2cbr.py examples/261110_2.txt output.cbr templates/1102.cbr
