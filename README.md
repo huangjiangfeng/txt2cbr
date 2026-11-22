@@ -32,12 +32,10 @@ python txt2cbr.py <输入.txt> <输出.cbr> [模板.cbr]
 
 ## 示例
 
-`examples/` 目录下有三对 txt/cbr 样例（各 27 着），可直接用来验证转换效果：
+`examples/` 目录下有一对 txt/cbr 样例（27 着），可直接用来验证转换效果：
 
 ```bash
-python txt2cbr.py examples/261102_32.txt output.cbr templates/1102.cbr
+python txt2cbr.py examples/261110_2.txt output.cbr templates/1102.cbr
 ```
 
-- `261102_32.txt` / `261102_32.cbr`
 - `261110_2.txt` / `261110_2.cbr`
-- `261112_3.txt` / `261112_3.cbr`
